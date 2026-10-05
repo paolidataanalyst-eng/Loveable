@@ -1,0 +1,53 @@
+Crie um aplicativo web chamado "Treino em Dia", em português do Brasil, para controle de atividades físicas. Ele deve funcionar no celular e no computador, sem login e sem backend: todos os dados ficam salvos no localStorage do navegador.
+
+VISUAL
+- Estilo limpo e moderno. Cor principal verde-petróleo (#0b6b5d), cor de atenção laranja (#d9480f), fundo claro esverdeado (#f4faf8), cartões brancos com borda suave e cantos arredondados.
+- Mobile first. Nada de rolagem lateral na página. Tabelas largas rolam dentro do próprio cartão.
+- Cabeçalho com o nome "Treino em Dia" e menu com 4 telas: Início, Meu Mês, Planejamentos, Raio-X.
+- Campos de formulário com rótulo visível, foco visível e botões grandes o suficiente para toque.
+- Não use alert, prompt nem confirm. Avisos aparecem na própria tela (toast). Para apagar, o botão muda para "Confirmar?" e só apaga no segundo clique em até 3 segundos.
+
+TELA 1: INÍCIO
+Três cartões que levam às outras telas, cada um com uma frase curta. Abaixo, um aviso: "Aplicativo de exemplo para estudo. Não substitui orientação de um profissional de educação física ou de saúde."
+
+TELA 2: MEU MÊS
+- Seletor de mês (padrão: mês atual). Os dados são guardados por mês, na chave "treino_AAAA-MM".
+- Cartões de resumo: Treinos, Tempo total, Distância, Esforço médio (de 5), Dias com treino, Maior sequência (dias seguidos com treino no mês).
+- Formulário "Registrar treino": modalidade (Corrida, Caminhada, Bicicleta, Musculação, Natação, Yoga/Alongamento, Outra), data (padrão: hoje), descrição opcional, duração, distância em km opcional, esforço percebido de 1 a 5 (1 muito leve, 3 moderado, 5 máximo).
+- A duração aceita "45", "45 min", "1:30" e "1h30" e vira minutos. A distância aceita "5,2", "5.2" e "1.234,5".
+- Guarde minutos e metros sempre como números inteiros, para evitar erros de arredondamento. Mostre o tempo como "1h 05min" e a distância como "5,20 km".
+- Valide: duração maior que zero; distância inválida mostra aviso e não salva.
+- Metas do mês (3 campos numéricos, botão "Salvar metas"):
+  1. mínimo de minutos de treino
+  2. mínimo de número de treinos
+  3. limite de treinos de esforço máximo (esforço 5)
+  Cada meta mostra quanto falta ou quanto sobrou. Meta de mínimo: "Faltam X para a meta" em laranja, ou "Acima da meta. Boa!" em verde. Meta de limite: "Ainda cabem X dentro do limite" ou "Limite ultrapassado".
+- Conferir com o relógio ou aplicativo: mostra o tempo e a distância calculados pelo sistema, recebe o total real e registra a DIFERENÇA como um lançamento de "Ajuste", sem apagar o histórico. Ajustes entram nos totais de tempo e distância, mas não contam como treino.
+- Tabela do mês com data (dd/mm), atividade, modalidade, duração, distância, esforço e botão Apagar. Estado vazio: "Nenhum treino neste mês. Registre o primeiro acima ou carregue o exemplo."
+- Botão "Exportar para Excel (CSV)": separador ponto e vírgula, vírgula decimal, com BOM para os acentos abrirem certo no Excel brasileiro. Inclui resumo do mês e a lista de treinos.
+- Botão "Carregar dados de exemplo": cria 6 treinos fictícios no mês (corrida, musculação, caminhada, bicicleta, tiros de 400 m, natação) e metas de 900 minutos, 12 treinos e limite de 3 treinos máximos.
+
+TELA 3: PLANEJAMENTOS
+- É só previsão e não altera os treinos registrados.
+- Seletor de mês (padrão: mês seguinte), treinos por semana, minutos por treino e semanas no mês (padrão 4).
+- Botão "Calcular e salvar" mostra treinos previstos (treinos por semana x semanas) e minutos previstos, e compara com a meta de minutos definida em Meu Mês para o mesmo mês ("Cobre a meta com folga de X" ou "Faltam X para atingir a meta"; se não houver meta, avisar).
+- Salva por mês, lista os planejamentos salvos com botão Abrir, e recarrega os campos ao abrir.
+
+TELA 4: RAIO-X DA ROTINA
+- Separa o que a pessoa faz toda semana (Rotina) dos objetivos de longo prazo (Desafio). Não some os dois tipos juntos.
+- Cartões: Rotina por semana (soma dos minutos), Desafios (soma dos minutos), Itens listados.
+- Formulário: nome, minutos (aceita "40" ou "1h30"), tipo. Tabela com botão Remover (dois cliques). Botões "Exportar (CSV)" e "Carregar dados de exemplo".
+
+REGRAS TÉCNICAS
+- React com TypeScript. Separe a lógica em funções puras testáveis: paraMinutos, paraMetros, fmtMin, fmtKm, calcularMes, maiorSequencia.
+- Maior sequência: conte dias seguidos com pelo menos um treino, ignorando datas repetidas. Use datas no formato AAAA-MM-DD e compare por dia, sem problemas de fuso horário.
+- Data de hoje no fuso do aparelho, nunca em UTC.
+- Leia e grave o localStorage dentro de try/catch com valor padrão, para o app não quebrar se o armazenamento falhar.
+- Nunca insira texto digitado como HTML. Exiba como texto.
+- Rótulos ligados aos campos, botões de verdade (não divs clicáveis) e navegação possível só com o teclado.
+
+CRITÉRIOS DE ACEITE
+- Com os dados de exemplo, Meu Mês mostra: 6 treinos, 4h 20min, 32,70 km, esforço médio 3,0 de 5, 6 dias com treino e maior sequência de 3 dias.
+- Os dados continuam depois de recarregar a página.
+- Digitar <b>teste</b> na descrição aparece como texto, sem formatar.
+- Nenhuma rolagem lateral em tela de 400 px.
