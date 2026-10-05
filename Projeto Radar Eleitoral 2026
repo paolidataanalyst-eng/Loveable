@@ -1,0 +1,262 @@
+Crie uma aplicação web responsiva chamada **RADAR ELEITORAL 26**, destinada à análise de dados da eleição presidencial brasileira de 2026.
+
+## OBJETIVO
+
+Construir um dashboard executivo, moderno e interativo para visualizar:
+
+- resultados do 1º turno;
+- desempenho dos candidatos;
+- resultados por UF;
+- distribuição de votos;
+- diferença entre os dois finalistas;
+- votos dos candidatos eliminados;
+- simulação matemática do 2º turno;
+- análise de sensibilidade das transferências de votos;
+- insights derivados dos dados.
+
+O projeto deve ter aparência de uma ferramenta profissional de **Business Intelligence**, e não de um portal de notícias.
+
+## IDENTIDADE VISUAL
+
+Utilize fundo predominantemente **azul-claro**, com degradês suaves entre branco, azul-gelo e azul.
+
+Estética:
+- tecnológica;
+- clean;
+- executiva;
+- moderna;
+- inspirada em dashboards Power BI;
+- cards levemente translúcidos;
+- bordas finas;
+- sombras suaves;
+- cantos arredondados;
+- bastante espaço visual.
+
+Paleta:
+
+Azul = Flávio Bolsonaro  
+Vermelho = Lula  
+Dourado/amarelo = diferenças, alertas e destaques  
+Azul-marinho = títulos e textos principais  
+Cinza = informações secundárias
+
+Não utilizar fotografias dos candidatos.
+
+## CABEÇALHO
+
+Título grande:
+
+**RADAR ELEITORAL 26**
+
+Subtítulo:
+
+**DADOS • CENÁRIOS • TENDÊNCIAS • ANÁLISE**
+
+Adicionar referência visual discreta ao mapa do Brasil e a Brasília.
+
+## KPIs SUPERIORES
+
+Criar cinco cards:
+
+**FLÁVIO BOLSONARO**  
+47,03%  
+56.104.503 votos
+
+**LULA**  
+45,16%  
+53.879.538 votos
+
+**DIFERENÇA**  
+2.224.965 votos  
+1,87 p.p.
+
+**VOTOS VÁLIDOS**  
+119.300.788
+
+**AUGUSTO CURY**  
+2,89%  
+3.448.569 votos
+
+## DESEMPENHO NACIONAL
+
+Criar gráfico comparativo com todos os candidatos do primeiro turno.
+
+Permitir visualizar:
+- votos;
+- percentual;
+- posição;
+- classificação analítica.
+
+## RESULTADO POR UF
+
+Criar tabela simples:
+
+UF | Vencedor | % do vencedor
+
+Mostrar todas as 27 unidades da Federação.
+
+Utilizar azul quando o vencedor for Flávio e vermelho quando for Lula.
+
+Adicionar opção de ordenação por:
+- UF;
+- candidato vencedor;
+- percentual.
+
+## MOTOR DE CENÁRIOS — 2º TURNO
+
+Esta é a principal funcionalidade do dashboard.
+
+Criar sliders editáveis para:
+
+- retenção dos votos de Flávio;
+- retenção dos votos de Lula;
+- transferência dos votos de Augusto Cury;
+- transferência dos votos de Renan Santos;
+- transferência dos votos de Ronaldo Caiado.
+
+O cálculo deve atualizar o cenário automaticamente.
+
+Utilizar a lógica:
+
+Votos projetados do candidato =
+votos próprios retidos
++ votos recebidos dos candidatos eliminados
++ parcela definida dos demais votos.
+
+Mostrar imediatamente:
+
+**PROJEÇÃO DO 2º TURNO**
+
+Flávio Bolsonaro  
+percentual projetado  
+votos projetados
+
+Lula  
+percentual projetado  
+votos projetados
+
+Mostrar também:
+
+**Diferença projetada em votos**
+
+e
+
+**Diferença projetada em pontos percentuais**
+
+## CENÁRIO-BASE
+
+Utilizar inicialmente os parâmetros definidos no Radar Eleitoral 26.
+
+O cenário-base deve apresentar aproximadamente:
+
+**Flávio Bolsonaro: 52,4%**
+
+**Lula: 47,6%**
+
+Destacar visualmente:
+
+**PROJEÇÃO DO CENÁRIO: FLÁVIO À FRENTE**
+
+Logo abaixo escrever obrigatoriamente:
+
+**Cenário matemático simulado. Não representa pesquisa eleitoral, intenção de voto ou previsão garantida do resultado.**
+
+## ANÁLISE E INSIGHTS
+
+Criar cards automáticos que interpretem os números.
+
+Exemplos:
+
+**Retenção da base**
+
+Mostrar quanto cada candidato precisa preservar dos votos obtidos no primeiro turno.
+
+**Transferência dos eliminados**
+
+Mostrar quais grupos possuem maior capacidade matemática de alterar o resultado.
+
+**Ponto de virada**
+
+Calcular quanto o candidato que estiver atrás precisaria conquistar adicionalmente para ultrapassar o adversário.
+
+**Variável de maior impacto**
+
+Identificar qual alteração nos parâmetros do modelo produz maior mudança no resultado.
+
+## DIRECIONAMENTO ANALÍTICO
+
+Criar duas colunas.
+
+### FLÁVIO
+
+Analisar matematicamente:
+
+- retenção da base;
+- disputa pelos votos de centro;
+- transferência dos votos de Cury, Renan e Caiado;
+- redução da diferença em regiões adversárias;
+- ampliação das margens nos grandes colégios eleitorais.
+
+### LULA
+
+Analisar:
+
+- retenção da base;
+- recuperação da diferença nacional;
+- transferência dos candidatos eliminados;
+- aumento das margens nas regiões onde possui vantagem;
+- redução das derrotas nos maiores colégios eleitorais.
+
+Não apresentar essas informações como recomendação política ou garantia de comportamento eleitoral.
+
+## TRANSPARÊNCIA METODOLÓGICA
+
+Criar uma área chamada:
+
+**METODOLOGIA**
+
+Explicar de forma simples:
+
+“O Motor de Cenários parte dos votos do primeiro turno e aplica hipóteses de retenção e transferência. Ao alterar os parâmetros, o resultado é recalculado automaticamente. Os números projetados representam cenários matemáticos e não pesquisas de intenção de voto.”
+
+Exibir separadamente:
+
+**Fonte dos dados do 1º turno: Tribunal Superior Eleitoral — TSE**
+
+**Projeções do 2º turno: modelo matemático Radar Eleitoral 26**
+
+Nunca apresentar percentuais projetados como dados oficiais do TSE.
+
+## REQUISITOS TÉCNICOS
+
+Construir a aplicação utilizando React + TypeScript.
+
+Organizar os dados de forma que possam posteriormente ser substituídos por API ou arquivo externo.
+
+Separar:
+- dados oficiais;
+- parâmetros do modelo;
+- cálculos;
+- componentes visuais.
+
+Não deixar valores importantes espalhados diretamente pelos componentes.
+
+Criar componentes reutilizáveis.
+
+O dashboard deve funcionar perfeitamente em desktop e tablet.
+
+No celular, reorganizar os cards verticalmente sem perder legibilidade.
+
+Não remover informações ou funcionalidades existentes ao implementar alterações futuras.
+
+## PRINCÍPIO CENTRAL
+
+O dashboard precisa deixar visualmente evidente a diferença entre:
+
+**DADO OFICIAL**
+
+**CÁLCULO**
+
+**CENÁRIO SIMULADO**
+
+O usuário deve conseguir alterar uma hipótese e imediatamente entender como essa mudança interfere na projeção do segundo turno.
