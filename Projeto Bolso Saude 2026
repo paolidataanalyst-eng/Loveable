@@ -1,0 +1,369 @@
+ATUALIZAÇÃO DO PROMPT MESTRE — BOLSO SAÚDE
+Data: 05/10/2026
+
+Manter todas as regras já definidas anteriormente e aplicar as seguintes
+alterações à especificação do produto.
+
+
+==================================================
+1. ARQUITETURA ATUALIZADA
+==================================================
+
+A arquitetura em teste do Bolso Saúde passa a possuir:
+
+1. 💰 Meu Mês
+2. 📸 Raio-X
+3. 🔮 Planejamentos
+4. 🗓️ Contas Futuras
+5. 👤 Conta / Perfil
+
+IMPORTANTE:
+
+O Plano da Virada NÃO faz parte do aplicativo comercial.
+Ele permanece apenas como origem e laboratório conceitual do projeto.
+
+
+==================================================
+2. NOVA ÁREA — 🗓️ CONTAS FUTURAS
+==================================================
+
+Criar uma nova página/seção chamada:
+
+🗓️ Contas Futuras
+
+OBJETIVO:
+
+Permitir que o usuário registre despesas que ainda não aconteceram,
+mas que ele já sabe que precisará pagar futuramente.
+
+Exemplos:
+
+Arrumar o carro
+Manutenção da casa
+Consulta médica futura
+Material escolar
+Seguro
+Viagem já prevista
+Conserto de eletrodoméstico
+
+Esta área NÃO representa um gasto realizado.
+
+Portanto:
+
+NÃO diminuir o saldo atual.
+NÃO contabilizar como gasto do Meu Mês.
+NÃO alterar automaticamente o Raio-X.
+NÃO alterar automaticamente Planejamentos.
+
+É uma lista independente de compromissos/despesas futuras conhecidas.
+
+
+==================================================
+3. FORMULÁRIO — CONTAS FUTURAS
+==================================================
+
+Criar formulário contendo:
+
+DESCRIÇÃO
+DATA PREVISTA
+VALOR
+
+Descrição:
+Text Input
+
+Placeholder:
+"Ex.: Arrumar o carro"
+
+Data prevista:
+Date Input / Date Picker
+
+Formato visual:
+DD/MM/AAAA
+
+Valor:
+Currency Input em Real brasileiro (R$)
+
+Botão:
+
++ Adicionar conta futura
+
+Todos os campos são obrigatórios.
+
+
+==================================================
+4. LISTA DE CONTAS FUTURAS
+==================================================
+
+Abaixo do formulário, criar Data Table contendo:
+
+DATA PREVISTA
+DESCRIÇÃO
+VALOR
+AÇÃO
+
+Exemplo:
+
+20/11/2026 | Arrumar o carro | R$ 1.500,00 | Remover
+
+Ordenar preferencialmente pela data prevista.
+
+
+==================================================
+5. TOTAL DAS CONTAS FUTURAS
+==================================================
+
+Criar Summary Card:
+
+TOTAL PREVISTO
+
+Somar todos os valores cadastrados.
+
+Exemplo:
+
+Total previsto
+R$ 3.850,00
+
+Esse total é apenas informativo.
+
+NÃO subtrair esse valor do saldo atual.
+
+
+==================================================
+6. REMOVER CONTA FUTURA
+==================================================
+
+Cada Row da tabela deve possuir:
+
+Remover
+
+Antes da exclusão, apresentar Confirmation Dialog:
+
+"Deseja remover esta conta futura?"
+
+Após confirmação:
+
+remover definitivamente o registro;
+recalcular o total previsto;
+atualizar imediatamente a interface.
+
+Não recriar automaticamente itens removidos.
+
+
+==================================================
+7. EXPORTAR CONTAS FUTURAS
+==================================================
+
+Criar botão:
+
+📊 Exportar para Excel
+
+No produto real, gerar arquivo .XLSX.
+
+Exportar:
+
+Data prevista
+Descrição
+Valor
+
+No final:
+
+TOTAL PREVISTO
+
+
+==================================================
+8. ESTADO VAZIO
+==================================================
+
+Quando não existirem registros, apresentar Empty State amigável:
+
+"Você ainda não cadastrou nenhuma conta futura."
+
+Complemento:
+
+"Adicione gastos que você já sabe que terá mais adiante."
+
+
+==================================================
+9. REGRA DE NEGÓCIO
+==================================================
+
+É fundamental diferenciar:
+
+MEU MÊS
+= realidade financeira atual.
+
+RAIO-X
+= fotografia das dívidas, contas e obrigações.
+
+PLANEJAMENTOS
+= construção de cenários para meses futuros.
+
+CONTAS FUTURAS
+= despesas concretas que o usuário já sabe que provavelmente precisará pagar.
+
+Uma Conta Futura NÃO deve movimentar dinheiro automaticamente.
+
+
+==================================================
+10. BANCO DE DADOS
+==================================================
+
+Adicionar estrutura própria para Contas Futuras.
+
+Sugestão:
+
+future_expenses
+
+Campos mínimos:
+
+id
+user_id
+description
+expected_date
+amount
+created_at
+updated_at
+
+Aplicar RLS:
+
+auth.uid() = user_id
+
+Nenhum usuário pode acessar contas futuras de outro usuário.
+
+
+==================================================
+11. MEU MÊS — DATA DOS LANÇAMENTOS
+==================================================
+
+Manter a atualização já definida:
+
+Todo lançamento do Meu Mês precisa possuir DATA.
+
+Estrutura do histórico:
+
+DATA
+DESCRIÇÃO
+TIPO
+FORMA DE PAGAMENTO
+CATEGORIA
+VALOR
+AÇÕES
+
+Exemplo:
+
+05/10/2026
+Gasolina
+Gasto
+Cartão de crédito
+Transporte/Combustível
+R$ 127,00
+
+A data deve:
+
+vir preenchida inicialmente com a data atual;
+permitir alteração;
+permitir lançamento retroativo;
+ser salva no banco;
+aparecer no histórico;
+ser utilizada nos filtros;
+ser incluída nas exportações.
+
+
+==================================================
+12. REGRA PARA CARTÃO DE CRÉDITO
+==================================================
+
+Reforçar:
+
+Uma compra no cartão de crédito NÃO reduz imediatamente
+"Dinheiro que tenho hoje".
+
+Ela aumenta:
+
+Gastei no cartão
+Uso da meta do cartão
+Obrigações relacionadas ao cartão.
+
+O pagamento posterior da fatura deve ser tratado de forma que
+a compra não seja contabilizada duas vezes como consumo.
+
+
+==================================================
+13. MOBILE FIRST
+==================================================
+
+A experiência deve funcionar muito bem no celular.
+
+Principalmente:
+
+Adicionar gasto
+Adicionar conta futura
+Conferir saldo
+Conferir cartão
+Consultar metas
+Remover/editar registros
+
+Inputs e Buttons devem possuir tamanho confortável para toque.
+
+Tabelas muito largas não devem obrigar o usuário a lidar com uma
+interface ruim no celular.
+
+Quando necessário, transformar Rows em Cards responsivos no mobile.
+
+
+==================================================
+14. NÃO AMPLIAR ESCOPO AUTOMATICAMENTE
+==================================================
+
+Contas Futuras é atualmente uma HIPÓTESE EM TESTE.
+
+Não criar automaticamente:
+
+alertas de vencimento;
+notificações;
+parcelamentos;
+integração com calendário;
+reserva automática de dinheiro;
+transferência automática para Meu Mês;
+sincronização automática com Planejamentos;
+sincronização automática com Raio-X.
+
+Essas possibilidades devem permanecer como ideias futuras até
+serem validadas.
+
+Implementar agora apenas:
+
+Adicionar
+Data
+Descrição
+Valor
+Listar
+Somar
+Remover
+Exportar Excel.
+
+
+==================================================
+15. PRINCÍPIO DE DESENVOLVIMENTO
+==================================================
+
+Não alterar regras já aprovadas do Bolso Saúde sem solicitação.
+
+Quando surgir uma oportunidade de nova funcionalidade durante
+a implementação, NÃO implementá-la automaticamente.
+
+Classificar como:
+
+BUG
+CONFUSÃO
+MELHORIA
+NOVA IDEIA
+
+e aguardar decisão sobre:
+
+MVP
+V2
+FUTURO.
+
+O objetivo atual continua sendo validar um produto financeiro
+simples, compreensível e sustentável para uso cotidiano.
